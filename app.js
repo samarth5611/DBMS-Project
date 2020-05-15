@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const path = require('path');
 
 const app = express();
@@ -12,7 +13,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(fileUpload());
+
 
 app.use(session({
   secret: 'seCReT',
